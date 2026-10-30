@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Monopoly Deluxe Multiplayer</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="topbar">
+        <div>
+          <p class="eyebrow">Multiplayer Board Game</p>
+          <h1>Monopoly Deluxe</h1>
+        </div>
+        <div class="header-right">
+          <span id="roomBadge" class="room-badge hidden">Room: --</span>
+          <button id="leaveRoomBtn" class="secondary-btn hidden">Leave Room</button>
+        </div>
+      </header>
+
+      <main id="lobbyScreen" class="panel lobby-screen">
+        <div class="lobby-inner">
+          <h2>Start a Game</h2>
+          <div class="auth-form">
+            <label for="playerName">Your name</label>
+            <input id="playerName" type="text" maxlength="18" value="Player 1" />
+          </div>
+
+          <div class="split-form">
+            <button id="createRoomBtn" class="primary-btn">Create Room</button>
+            <div class="join-block">
+              <label for="roomCodeInput">Room code</label>
+              <div class="join-row">
+                <input id="roomCodeInput" type="text" maxlength="5" placeholder="ABCDE" />
+                <button id="joinRoomBtn" class="secondary-btn">Join</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="room-list-wrap">
+            <p class="panel-label">Live Rooms</p>
+            <ul id="roomList" class="room-list"></ul>
+          </div>
+        </div>
+      </main>
+
+      <main id="gameScreen" class="game-layout hidden">
+        <section class="board-panel">
+          <div id="board" class="board" aria-label="Monopoly board"></div>
+        </section>
+
+        <aside class="sidebar">
+          <section class="panel turn-panel">
+            <p class="panel-label">Current Turn</p>
+            <h2 id="turnLabel">Waiting...</h2>
+            <div class="dice-row">
+              <div class="dice" id="die1">-</div>
+              <div class="dice" id="die2">-</div>
+            </div>
+            <button id="startGameBtn" class="primary-btn full-width hidden">Start Game</button>
+            <button id="rollBtn" class="primary-btn full-width hidden">Roll Dice</button>
+            <button id="buyBtn" class="secondary-btn full-width hidden">Buy Property</button>
+          </section>
+
+          <section class="panel log-panel">
+            <p class="panel-label">Game Log</p>
+            <div id="log" class="log" aria-live="polite"></div>
+          </section>
+        </aside>
+      </main>
+
+      <section id="playersPanel" class="players-panel panel hidden">
+        <p class="panel-label">Players</p>
+        <div id="players" class="players"></div>
+      </section>
+    </div>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="game.js"></script>
+  </body>
+</html>
